@@ -1,0 +1,11 @@
+.movieTile{
+    background-color: aquamarine;
+    display: flex;
+    background-color: #333;
+    color: white;
+}
+
+.movieImage{
+    width: 200px;
+    padding: 20px;
+}
