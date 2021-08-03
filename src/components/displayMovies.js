@@ -1,39 +1,71 @@
+import "../componentStyle/movieTile.css";
 import React from "react";
-import GetMovie from "./getMovieInfo";
-class DisplayMovies extends React.Component {
+import MovieContent from "./handlingMovieContent/movieContent";
+import { ShowInfo, HideInfo } from "./movieButton.js";
+class GetMovie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [],
+      movieInformation: this.props.movieInfo,
+      show: false,
     };
+    this.handleShowInfoClick = this.handleShowInfoClick.bind(this);
+    this.handleHideInfoClick = this.handleHideInfoClick.bind(this);
+  }
+  handleShowInfoClick() {
+    this.setState({ show: true });
+  }
+  handleHideInfoClick() {
+    this.setState({ show: false });
   }
   componentDidMount() {
-    const movieInfo = [];
-    this.movieID = this.props.movieList.forEach(async (movie) => {
-      const url =
-        "https://www.omdbapi.com/?i=tt3896198&apikey=8af58d6d" + "&t=" + movie;
-      const movieResponse = await fetch(url).catch((error) =>
-        console.log(error)
-      );
-      movieInfo.push(await movieResponse.json());
-      this.setState({ movies: movieInfo });
-    });
+    console.log("mounting");
   }
-  componentWillUnmount() {
-    clearInterval(this.movieID);
+  createCustomMovieInfo() {
+    const movieInformation = { ...this.state.movieInformation };
+    let movieObject;
+    console.log("entered here");
+    if (this.state.show) {
+      movieObject = {
+        plot: movieInformation.Plot,
+        cast: movieInformation.Actors,
+        genre: movieInformation.Genre,
+      };
+    } else {
+      movieObject = {};
+    }
+    console.log(movieObject);
+    return movieObject;
+  }
+  componentDidUpdate() {
+    if (this.props.movieInfo == this.state.movieInformation) {
+      this.setState({ movieInformation: this.createCustomMovieInfo() });
+      console.log(this.state.movieInformation);
+    }
   }
 
+  componentWillUnmount() {
+    clearInterval(console.log("unmounting"));
+  }
   render() {
-    console.log(this.state.movies);
+    let button;
+    if (this.state.show) {
+      button = <HideInfo onClick={this.handleHideInfoClick} />;
+    } else button = <ShowInfo onClick={this.handleShowInfoClick} />;
     return (
-      <div>
-        <p>Movie details</p>
-        {this.state.movies.map((d) => (
-          <GetMovie key={d.imdbID} movieInfo={d} />
-        ))}
+      <div className="movieTile">
+        <img src={this.props.movieInfo.Poster} className="movieImage"></img>
+        <div className="movieContent">
+          <h2>{this.props.movieInfo.Title}</h2>
+          <MovieContent
+            show={this.state.show}
+            movieContent={this.props.movieInfo}
+          />
+          {button}
+        </div>
       </div>
     );
   }
 }
 
-export default DisplayMovies;
+export default GetMovie;

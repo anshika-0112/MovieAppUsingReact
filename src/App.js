@@ -1,12 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-import DisplayMovies from './components/displayMovies';
+import DisplayMovies from "./components/getMovieInfo";
 function App() {
-  const movieList=["home","pie","avengers"];
+  const movieList = ["home", "pie", "avengers"];
   return (
     <div className="App">
-      <DisplayMovies movieList={movieList}/>
+      <DisplayMovies movieList={movieList} />
     </div>
   );
 }

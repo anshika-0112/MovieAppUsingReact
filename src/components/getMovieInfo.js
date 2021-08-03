@@ -1,45 +1,49 @@
-import "../componentStyle/movieTile.css";
 import React from "react";
-import MovieContent from "./movieContent";
-import {ShowInfo,HideInfo} from "../components/movieButton.js"
-class GetMovie extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          show: false,
-        };
-        this.showInformation = this.showInformation.bind(this);
-        this.hideInformation = this.hideInformation.bind(this);
-      }
-        showInformation()
-  {
-    this.setState({show:true});
+import GetMovie from "./displayMovies";
+class DisplayMovies extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movieInput: "",
+      movies: [],
+    };
+    //     this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
-  hideInformation()
-  {
-    this.setState({show:false});
+  componentDidMount() {
+    const movieInfo = [];
+    this.movieID = this.props.movieList.forEach(async (movie) => {
+      const url =
+        "https://www.omdbapi.com/?i=tt3896198&apikey=8af58d6d" + "&t=" + movie;
+      const movieResponse = await fetch(url).catch((error) =>
+        console.log(error)
+      );
+      movieInfo.push(await movieResponse.json());
+      this.setState({ movies: movieInfo });
+    });
   }
+  // handleChange(event) {
+  //   this.setState({movieInput: event.target.value});
+  // }
 
-  
-    render()
-    {
-        let button;
-    if(this.state.show)
-    {
-      button=<HideInfo onClick={this.hideInformation}/>
-    }
-    else
-    button=<ShowInfo onClick={this.showInformation}/>
-  return (
-    <div className="movieTile">
-      <img src={this.props.movieInfo.Poster}  className="movieImage"></img>
-      <div className="movieContent">
-          <h2>{this.props.movieInfo.Title}</h2>
-        <MovieContent show={this.state.show} movieContent={this.props.movieInfo}/>
-        {button}
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  // }
+  render() {
+    console.log(this.state.movies);
+    return (
+      <div>
+        {/* <form onSubmit={this.handleSubmit}>
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        <input type="submit" value="Submit" />
+      </form> */}
+        <p>Movie details</p>
+        {this.state.movies.map((d) => (
+          <GetMovie key={d.imdbID} movieInfo={d} />
+        ))}
       </div>
-    </div>
-  );}
+    );
+  }
 }
 
-export default GetMovie;
+export default DisplayMovies;
