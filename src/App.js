@@ -1,11 +1,11 @@
 import "./App.css";
+import GetMovieInformation from "./components/getMovieInfo";
 
-import DisplayMovies from "./components/getMovieInfo";
 function App() {
-  const movieList = ["home", "pie", "avengers"];
+  const movieList = ["home", "life", "avengers", "platform", "wazir"];
   return (
     <div className="App">
-      <DisplayMovies movieList={movieList} />
+      <GetMovieInformation movieList={movieList} />
     </div>
   );
 }

@@ -1,10 +1,16 @@
-import { ShowMovieContent, HideMovieContent } from "./displayMovieContent.js";
 function MovieContent(props) {
-  if (props.show) {
-    return <ShowMovieContent movieContent={props.movieContent} />;
-  } else {
-    return <HideMovieContent movieContent={props.movieContent} />;
-  }
+  return (
+    <div>
+      {props.showMovieInfo && (
+        <div>
+          {props.movieContent.Genre}
+          <p>Ratings: {props.movieContent.Ratings[0].Value}</p>
+          <p >Overview: {props.movieContent.Plot}</p>
+          <p>Cast: {props.movieContent.Actors}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default MovieContent;

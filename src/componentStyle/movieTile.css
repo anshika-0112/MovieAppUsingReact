@@ -1,11 +1,44 @@
-.movieTile{
-    background-color: aquamarine;
-    display: flex;
-    background-color: #333;
-    color: white;
+.movieTile {
+  background-color: aquamarine;
+  display: flex;
+  background-color: #333;
+  color: white;
+  padding: 10px;
 }
 
-.movieImage{
-    width: 200px;
-    padding: 20px;
+.movieImage {
+  width: 200px;
+  padding: 20px;
+  background-color: black;
+}
+#movieForm {
+  align-items: center;
+  height: 38vh;
+  background-color: #333;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.movieContent {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+}
+.movieButton:hover {
+  cursor: pointer;
+}
+.btn-red {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px;
+}
+
+#searchBar {
+  margin: 10px;
+  padding: 10px;
+}
+
+.movieHeading {
+  color: white;
 }
