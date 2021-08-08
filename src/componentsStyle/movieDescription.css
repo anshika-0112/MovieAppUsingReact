@@ -1,0 +1,12 @@
+.movieDescription {
+  padding: 5px;
+}
+
+.movieDescription p {
+  margin: 15px;
+}
+
+.movieDescription p span {
+  font-weight: 600;
+  font-size: 1.1rem;
+}

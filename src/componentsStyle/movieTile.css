@@ -1,0 +1,21 @@
+.movieTile {
+  width: 98%;
+  padding: 3px;
+  display: flex;
+  margin: 10px;
+  background-color: #b9aad8de;
+}
+
+.moviePoster {
+  width: 282px;
+  height: 400px;
+  margin: 10px;
+}
+
+.movieContent {
+  margin: 10px;
+}
+
+.movieHeading {
+  padding: 5px;
+}

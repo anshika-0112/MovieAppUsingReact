@@ -1,13 +1,10 @@
 import "./App.css";
-import GetMovieInformation from "./components/getMovieInfo";
-import Header from "./components/Header";
+import FilterableMovieTable from "./components/FilterableMovieTable.js";
 
 function App() {
-  const movieList = ["home", "life", "avengers", "platform", "wazir"];
   return (
-    <div className="App">
-      <Header/>
-      <GetMovieInformation movieList={movieList} />
+    <div>
+      <FilterableMovieTable />
     </div>
   );
 }
