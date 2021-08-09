@@ -12,6 +12,10 @@
   border: none;
 }
 
+.btn-red:hover{
+  cursor: pointer;
+}
+
 #movieForm {
   height: 35vh;
   flex-direction: column;

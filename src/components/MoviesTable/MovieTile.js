@@ -1,5 +1,4 @@
 import React from "react";
-import { HideInfo, ShowInfo } from "./movieInformationButtons";
 import MovieDescription from "./MovieDescription.js";
 import "../../componentsStyle/movieTile.css";
 
@@ -8,18 +7,16 @@ export default class MovieTile extends React.Component {
     super(props);
     this.state = {
       movieDetails: null,
-      showMovieDetails: false,
     };
     this.handleShowInfoClick = this.handleShowInfoClick.bind(this);
     this.handleHideInfoClick = this.handleHideInfoClick.bind(this);
     this.fetchMovieDetails = this.fetchMovieDetails.bind(this);
   }
   handleShowInfoClick() {
-    this.setState({ showMovieDetails: true });
     this.fetchMovieDetails(this.props.movieInformation.Title);
   }
   handleHideInfoClick() {
-    this.setState({ showMovieDetails: false });
+    this.setState({movieDetails:null})
   }
 
   async fetchMovieDetails(movieName) {
@@ -28,14 +25,14 @@ export default class MovieTile extends React.Component {
       "&t=" +
       movieName;
     const movieResponse = await fetch(url).catch((error) => console.log(error));
-    const movieInfo = await movieResponse.json();
-    this.setState({ movieDetails: movieInfo });
+    const movieDetails = await movieResponse.json();
+    this.setState({ movieDetails });
   }
   render() {
     let movieInfoButton;
-    if (this.state.showMovieDetails) {
-      movieInfoButton = <HideInfo onClick={this.handleHideInfoClick} />;
-    } else movieInfoButton = <ShowInfo onClick={this.handleShowInfoClick} />;
+    if (this.state.movieDetails) {
+      movieInfoButton = <button  className="btn-red" onClick={this.handleHideInfoClick} >Hide Info</button>;
+    } else movieInfoButton = <button className="btn-red" onClick={this.handleShowInfoClick} >Show Info</button>;
     return (
       <div className="movieTile">
         <img
@@ -45,8 +42,7 @@ export default class MovieTile extends React.Component {
         <div className="movieContent">
           <h1 className="movieHeading">{this.props.movieInformation.Title}</h1>
           <MovieDescription
-            showMovieDetails={this.state.showMovieDetails}
-            movieContent={this.state.movieDetails}
+            movieDetails={this.state.movieDetails}
           />
           {movieInfoButton}
         </div>

@@ -1,25 +1,25 @@
 import "../../componentsStyle/movieDescription.css";
 
-export default function MovieDescription(props) {
+export default function MovieDescription({movieDetails}) {
   return (
     <div>
-      {props.showMovieDetails && props.movieContent !== null && (
+      { movieDetails !== null && (
         <div className="movieDescription">
-          {props.movieContent.Genre} ({props.movieContent.Type})
+          {movieDetails.Genre} ({movieDetails.Type})
           <p>
-            <span>Ratings:</span> {props.movieContent.Ratings[0].Value}
+            <span>Ratings:</span> {movieDetails.Ratings[0].Value}
           </p>
           <p>
-            <span>Overview:</span> {props.movieContent.Plot}
+            <span>Overview:</span> {movieDetails.Plot}
           </p>
           <p>
-            <span>Language:</span> {props.movieContent.Language}
+            <span>Language:</span> {movieDetails.Language}
           </p>
           <p>
-            <span>Released:</span> {props.movieContent.Released}
+            <span>Released:</span> {movieDetails.Released}
           </p>
           <p>
-            <span>Cast:</span> {props.movieContent.Actors}
+            <span>Cast:</span> {movieDetails.Actors}
           </p>
         </div>
       )}

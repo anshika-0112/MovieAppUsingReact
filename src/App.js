@@ -1,10 +1,10 @@
 import "./App.css";
-import FilterableMovieTable from "./components/FilterableMovieTable.js";
+import MoviePage from "./components/MoviePage";
 
 function App() {
   return (
     <div>
-      <FilterableMovieTable />
+      <MoviePage />
     </div>
   );
 }

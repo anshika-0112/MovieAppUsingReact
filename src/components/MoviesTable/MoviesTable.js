@@ -4,15 +4,13 @@ import "../../componentsStyle/moviesTable.css";
 
 export default class MoviesTable extends React.Component {
   render() {
-    const rows = [];
-    this.props.movies.forEach((movie) => {
-      rows.push(
+    const rows=this.props.movies.map((movie) => {
+      return(
         <MovieTile
           className="movieTile"
           movieInformation={movie}
           key={movie.imdbID}
-        />
-      );
+        />)
     });
     return <div id="moviesTable">{rows}</div>;
   }
