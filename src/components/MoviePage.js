@@ -42,8 +42,9 @@ export default class MoviePage extends React.Component {
   handleSubmit(event) {
     if (this.state.inStorage) {
       let movieInfo = JSON.parse(localStorage.getItem("movies"));
-      let movieArray=movieInfo.filter((movie) => 
-         (movie.Title.toLowerCase() === this.state.movieInput.toLowerCase()) 
+      let movieArray = movieInfo.filter(
+        (movie) =>
+          movie.Title.toLowerCase() === this.state.movieInput.toLowerCase()
       );
       if (
         movieInfo[0].Title.toLowerCase().includes(

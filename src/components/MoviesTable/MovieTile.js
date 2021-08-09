@@ -16,7 +16,7 @@ export default class MovieTile extends React.Component {
     this.fetchMovieDetails(this.props.movieInformation.Title);
   }
   handleHideInfoClick() {
-    this.setState({movieDetails:null})
+    this.setState({ movieDetails: null });
   }
 
   async fetchMovieDetails(movieName) {
@@ -31,8 +31,17 @@ export default class MovieTile extends React.Component {
   render() {
     let movieInfoButton;
     if (this.state.movieDetails) {
-      movieInfoButton = <button  className="btn-red" onClick={this.handleHideInfoClick} >Hide Info</button>;
-    } else movieInfoButton = <button className="btn-red" onClick={this.handleShowInfoClick} >Show Info</button>;
+      movieInfoButton = (
+        <button className="btn-red" onClick={this.handleHideInfoClick}>
+          Hide Info
+        </button>
+      );
+    } else
+      movieInfoButton = (
+        <button className="btn-red" onClick={this.handleShowInfoClick}>
+          Show Info
+        </button>
+      );
     return (
       <div className="movieTile">
         <img
@@ -41,9 +50,7 @@ export default class MovieTile extends React.Component {
         ></img>
         <div className="movieContent">
           <h1 className="movieHeading">{this.props.movieInformation.Title}</h1>
-          <MovieDescription
-            movieDetails={this.state.movieDetails}
-          />
+          <MovieDescription movieDetails={this.state.movieDetails} />
           {movieInfoButton}
         </div>
       </div>
